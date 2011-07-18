@@ -6,13 +6,7 @@ var calipso = require('lib/calipso');
 
 exports = module.exports = {
   init: init,
-  route: route,
-  about: {
-    description: 'Adds google analytics tracking code to every page, uses a key defined in app configuration',
-    author: 'cliftonc',
-    version: '0.1.1',
-    home: 'http://github.com/cliftonc/calipso'
-  }
+  route: route
 };
 
 
