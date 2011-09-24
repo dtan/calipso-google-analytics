@@ -53,10 +53,12 @@ function init(module, app, next) {
  */
 function ga(req, res, template, block, next) {
 
-  var key = req.app.set('google-analytics-key');
+  var key = calipso.config.get('modules:google-analytics:config:key');
+  var anonymizeIP = calipso.config.get('modules:google-analytics:config:anonymize-ip');
+  var trackPageSpeed = calipso.config.get('modules:google-analytics:config:track-pagespeed');
   calipso.theme.renderItem(req, res, template, block, {
-    key: key
-  },next);
-  
-
-};
+    key: key,
+    anonymizeIP: anonymizeIP,
+    trackPageSpeed: trackPageSpeed
+  }, next);
+}
