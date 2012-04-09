@@ -8,9 +8,25 @@ var rootpath = process.cwd() + '/',
 
 exports = module.exports = {
   init: init,
-  route: route
+  route: route,
+  config: {
+    "key": {
+        "default": "",
+        "label": "Key",
+        "description": "The google analytics API Key for the current site."              
+    },
+    "anonymize-ip": {
+        "default": true,
+        "label": "Anonymise IP",
+        "description": "Anonymize IP addresses going to Google Analytics."              
+    },
+    "track-pagespeed": {
+        "default": true,
+        "label": "Track Page Speed",
+        "description": "Enable page speed tracking in Google Analytics."              
+    }
+  }
 };
-
 
 /**
  *Router
@@ -53,9 +69,9 @@ function init(module, app, next) {
  */
 function ga(req, res, template, block, next) {
 
-  var key = calipso.config.get('modules:google-analytics:config:key');
-  var anonymizeIP = calipso.config.get('modules:google-analytics:config:anonymize-ip');
-  var trackPageSpeed = calipso.config.get('modules:google-analytics:config:track-pagespeed');
+  var key = calipso.config.getModuleConfig('google-analytics','key');
+  var anonymizeIP = calipso.config.getModuleConfig('google-analytics','anonymize-ip');
+  var trackPageSpeed = calipso.config.getModuleConfig('google-analytics','track-pagespeed');
   calipso.theme.renderItem(req, res, template, block, {
     key: key,
     anonymizeIP: anonymizeIP,
